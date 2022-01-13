@@ -53,8 +53,8 @@ def lab(ammo, villain):
     typewriter_simulator(f"The {villain} had turned the lab to its nest. \n")
     typewriter_simulator("You see a door that leads \n"
                          "to the carpark you came through. \n")
-    typewriter_simulator(f"You approach the door \n"
-                         "but the {villain} appears  \n"
+    typewriter_simulator("You approach the door \n"
+                         f"but the {villain} appears  \n"
                          "and blocks you from leaving.\n")
     typewriter_simulator("What are you going to do ?\n")
     while True:
@@ -64,8 +64,8 @@ def lab(ammo, villain):
             if "bullets" in ammo:
                 fight(ammo, villain)
                 typewriter_simulator("You quickly load the bullets.")
-                typewriter_simulator(f"You fire multiple times \n"
-                                     "at the {villain}.")
+                typewriter_simulator("You fire multiple times \n"
+                                     f"at the {villain}.")
                 typewriter_simulator(f"The gunshots scare the {villain} and \n"
                                      "it retreats in fear")
                 typewriter_simulator("The coast is clear, you can now \n"
