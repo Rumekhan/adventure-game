@@ -12,8 +12,8 @@ def typewriter_simulator(message):
     for char in message:
         print(char, end='')
         if char in string.punctuation:
-            time.sleep(.0)
-        time.sleep(.00)
+            time.sleep(.2)
+        time.sleep(.05)
 
 
 def scene_one(ammo, villain):
