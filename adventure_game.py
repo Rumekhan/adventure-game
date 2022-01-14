@@ -16,9 +16,24 @@ def typewriter_simulator(message):
         time.sleep(.05)
 
 
+def valid_input(prompt, options):
+    while True:
+        response = input(prompt).lower()
+        if response in options:
+            return response
+        else:
+            colour_red_msg = ("\u001b[31;40mSorry,\n"
+                              "That option is invalid. \n"
+                              "Try again." + " ")
+            invalid_input_text = colour_red_msg
+            typewriter_simulator(invalid_input_text)
+
+
 def scene_one(ammo, villain):
-    typewriter_simulator("You are a poor cop in a new city. \n")
-    typewriter_simulator("You are driving late at night, \n")
+    typewriter_simulator("You are a poor cop \n"
+                         "in a new city. \n")
+    typewriter_simulator("You are driving \n"
+                         "late at night, \n")
     typewriter_simulator("a thunderstorm approaches. \n")
     typewriter_simulator("You drive into what looks \n"
                          "like a carpark with a weird entrance. \n")
@@ -36,15 +51,14 @@ def field(ammo, villain):
     typewriter_simulator("Press 1 to enter the lab.\n")
     typewriter_simulator("Press 2 to enter into the dark cave.\n")
     while True:
-        choice1 = input('\u001b[37mPlease enter 1 or 2.\n')
+        choice1 = valid_input('\u001b[37mPlease enter 1 or 2.\n', ["1", "2"])
+
         if choice1 == "1":
             lab(ammo, villain)
             break
         elif choice1 == "2":
             cave(ammo, villain)
             break
-        else:
-            validator_message()
 
 
 def lab(ammo, villain):
@@ -58,8 +72,8 @@ def lab(ammo, villain):
                          "and blocks you from leaving.\n")
     typewriter_simulator("What are you going to do ?\n")
     while True:
-        action_2 = input("\u001b[37mWould you like to do \n"
-                         "(1) fight or (2) runaway ? \n")
+        action_2 = valid_input("\u001b[37mWould you like to do \n"
+                               "(1) fight or (2) runaway ? \n", ["1", "2"])
         if action_2 == '1':
             if "bullets" in ammo:
                 fight(ammo, villain)
@@ -84,10 +98,8 @@ def lab(ammo, villain):
             replay()
             break
         elif action_2 == '2':
-            runaway(ammo, villain)
+            runaway()
             field(ammo, villain)
-        else:
-            validator_message()
 
 
 def cave(ammo, villain):
@@ -114,7 +126,7 @@ def fight(ammo, villain):
     print_pause("You draw your gun.")
 
 
-def runaway(ammo, villain):
+def runaway():
     print_pause("You feel you are unprepared")
     print_pause("You see an open lab window")
     print_pause("You jump through it and skedaddle")
@@ -123,8 +135,8 @@ def runaway(ammo, villain):
 
 
 def replay():
-    play_again = input("\u001b[37mDo you want to play again ?\n"
-                       "  (y / n )\n").lower()
+    play_again = valid_input("\u001b[37mDo you want to play again ?\n"
+                             "  (y / n )\n", ["x", "y"])
     if play_again == 'y':
         print_pause("LETS GOOOOOOO!!!!!!")
         print_pause("Game is Loading.......................")
@@ -133,15 +145,6 @@ def replay():
         print_pause("Thanks for playing the ADVENTURE GAME")
         print_pause("Until next time")
         print_pause("Goodbye")
-    else:
-        validator_message()
-        replay()
-
-
-def validator_message():
-    colour_red = "\u001b[31;40mSorry that option is invalid. Try again." + " "
-    invalid_input_text = colour_red
-    typewriter_simulator(invalid_input_text)
 
 
 def game_play():
